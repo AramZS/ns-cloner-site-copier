@@ -3,7 +3,7 @@ Contributors: neversettle
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=53JXD4ENC8MM2&rm=2
 Tags: never settle, automate, duplicate, copy, copier, clone, cloner, multisite, nework, subdomain, template, developer
 Requires at least: 3.0.1
-Tested up to: 3.5
+Tested up to: 3.5.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,6 +15,10 @@ The NS Cloner saves multisite admins LOTS of time by enabling them to clone exis
 This is by far the easiest, fastest, and most user-friendly way you will ever create fully configured sites on your multisite networks. As with everything we do, Never Settle is fanatical about simplifying user tasks to an absolute bare and joyful minimum without sacrificing the complex functionality going on behind the scenes. You will not find another site cloner that comes anywhere close to how easy this is to use.
 
 The NS Cloner will take any existing site on your WordPress multisite network and clone it into a new site that is completely identical in theme & theme settings, plugins & plugin configurations, content, pictures, videos, and site settings. **Everything** is preserved and intelligent replacements are made so that the new site settings reflect your choices for the name and title of the new site as well as other automated background housekeeping to make sure the new site works exactly the same way as if you had taken the time to set it all up manually.
+
+If you want even more functionality, check out our Pro version!
+http://neversettle.it/ns-cloner-pro/
+SPRING SALE - SAVE 25% at checkout until May 7th by using the coupon code: springfling
 
 = Standard Precautions and Notes =
 * This plugin ONLY works on WordPress Multisite and is not for use on single site installations. 
@@ -66,17 +70,30 @@ Check with your host. They probably have an agreesive mod_security configuration
 
 = When will the Pro version be available? =
 
-We're working hard on this! We are going to release several powerful features with the first Pro verison, but if there is a specific feature that you need right away, get in touch with us and maybe we can get you an Alpha version of Pro that accomplishes what you need.
+Wait no longer! It's here: http://neversettle.it/ns-cloner-pro/
 
-= Why can't I clone the root site (ID:1)? =
+= Why can't I clone the root site (ID:1) - why doesn't the main site show up in the drop-down? =
 
-The tables for the root site are prefixed differently than all the other tables in sub sites and this structure doesn't lend itself to the same automation that is possible with ID > 1. We are looking into away to support this as well.
+Unfortunately the Multisite database structure does not lend itself to automating cloning on the main site. All subsites create new tables that are numbered with the site ID. However, the main site's tables are not numbered and are mixed in with other global network tables. It gets even more complicated when other plugins install there own tables. There's no simple way to know what tables in the database should be cloned or not for the main site whereas it is very straight forward for subsites because they are numbered with the site ID.
 
 == Screenshots ==
 
 1. The NS Cloner in all its simple, user-friendly glory
 
 == Changelog ==
+= 2.1.4.4 =
+* Enhanced media file copy handling from 2.1.4.3
+
+= 2.1.4.3 =
+* Added better media file copy handling in cases where themes or plugins alter wp_upload_dir() and it is returning bad paths
+
+= 2.1.4.2 =
+* Fixed bug reported by Christian (Thank you!) where some upload file paths containing the same numbers as site IDs were getting mangled
+
+= 2.1.4.1 =
+* Fixed 2.1.4 to make file copies compatible with the new uploads structure in native WP 3.5 installs
+* ANNOUNCING NS Cloner Pro is now Available at http://neversettle.it/ns-cloner-pro/
+
 = 2.1.4 =
 * Fixed bug in 2.1.3 that caused file copies to fail in some cases where the target folders already existed
 
@@ -101,3 +118,6 @@ Fixed bug in 2.1.2 that forced subdirectory mode - if you updated to 2.1.2 pleas
 
 = 2.1.4 =
 * Fixed bug in 2.1.3 that caused file copies to fail in some cases where the target folders already existed. Update to correct the issue if affected.
+
+= 2.1.4.1 =
+* Fixed 2.1.4 to make file copies compatible with the new uploads structure in native WP 3.5 installs. This should correct issues with the media file copes! Please update ASAP.
