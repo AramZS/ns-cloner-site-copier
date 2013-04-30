@@ -326,22 +326,22 @@ class ns_cloner_free {
 				$stimer = explode( ' ', microtime() );
 				$stimer = $stimer[1] + $stimer[0];
 				//  -----------
-				
+				$safedSiteName = strtolower($_POST['new_site_name']);
 				// CREATE THE SITE
 				if ($_POST['is_create']) {
 						// Check for blank site name
 						if ( $_POST['new_site_name'] !== '' && $_POST['new_site_title'] !== '')
-						{
+						{ 	
 							// Create site
-							$this->create_site($_POST['new_site_name'], $_POST['new_site_title']);
+							$this->create_site($safedSiteName, $_POST['new_site_title']);
 							// handle subdomain versus subdirectory modes
 							if ($is_subdomain) {
-								$this->status = $this->status . 'Created site <a href="http://' . $_POST['new_site_name'] . '.' . $current_site->domain . '" target="_blank"><b>http://'; 
-								$this->status = $this->status . $_POST['new_site_name'] . '.' . $current_site->domain . '</b></a> with ID: <b>' . $this->target_id . '</b><br />';						
+								$this->status = $this->status . 'Created site <a href="http://' . $safedSiteName . '.' . $current_site->domain . '" target="_blank"><b>http://'; 
+								$this->status = $this->status . $safedSiteName . '.' . $current_site->domain . '</b></a> with ID: <b>' . $this->target_id . '</b><br />';						
 							}
 							else {
-								$this->status = $this->status . 'Created site <a href="http://' . $current_site->domain . '/' . $_POST['new_site_name'] . '" target="_blank"><b>http://'; 
-								$this->status = $this->status . $current_site->domain . '/' . $_POST['new_site_name'] . '</b></a> with ID: <b>' . $this->target_id . '</b><br />';						
+								$this->status = $this->status . 'Created site <a href="http://' . $current_site->domain . '/' . $safedSiteName . '" target="_blank"><b>http://'; 
+								$this->status = $this->status . $current_site->domain . '/' . $safedSiteName . '</b></a> with ID: <b>' . $this->target_id . '</b><br />';						
 							}
 						}
 						else
@@ -376,10 +376,10 @@ class ns_cloner_free {
 					$target_id = $this->target_id;
 					// handle subdomain versus subdirectory modes
 					if ($is_subdomain) {
-						$target_subd = $_POST['new_site_name'] . '.' . $current_site->domain;
+						$target_subd = $safedSiteName . '.' . $current_site->domain;
 					}
 					else {
-						$target_subd = $current_site->domain . '/' . $_POST['new_site_name'];
+						$target_subd = $current_site->domain . '/' . $safedSiteName;
 					}
 					$target_site = $_POST['new_site_title'];
 		
